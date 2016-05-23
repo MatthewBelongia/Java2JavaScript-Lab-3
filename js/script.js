@@ -6,7 +6,7 @@ function PhoneBook(){
 };
 
 function logName(value,key,map){
-	display.innerHTML += ("name: " + key + "<br />");
+	display.innerHTML += ("name: " + key +"<br />");
 }
 
 function logNumbers(value,key,map){
@@ -25,9 +25,15 @@ function listAllNumbers() {
 
 function showAdd() {
   var name = prompt("Enter full name");
-  var number = prompt("Enter phone number");
+  var number = [];
   phoneBook.set(name,number);
 };
+
+function addNumber(){
+  var who = prompt("Enter name");
+  var addToNumbers = prompt("Enter phone number");
+  phoneBook.get(who).push(addToNumbers);
+}
 
 function showRemove() {
   var remove = prompt("Enter name to remove");
@@ -36,8 +42,21 @@ function showRemove() {
 };
 
 function showLookup() {
-  var lookup = prompt("Enter number to lookup");
-  display.innerHTML += phoneBook.get(lookup);
+  var lookup = prompt("Enter name to lookup");
+  display.innerHTML += phoneBook.get(lookup) + "<br />";
 };
+
+function reverseLookup(){
+  var whichNum = prompt("Enter number to lookup");
+  for (var [key,value] of phoneBook) {
+        for(var i =0;i<phoneBook.get(key).length;i++){
+          if(phoneBook.get(key)[i] == whichNum){
+            console.log("success");
+            display.innerHTML += key + "<br />";
+          }
+        }
+      
+  }
+}
 
 var display = document.getElementById("display");
